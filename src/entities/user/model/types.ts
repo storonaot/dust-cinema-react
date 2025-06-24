@@ -2,7 +2,7 @@ export type UserProfile = {
   uid: string
   name: string
   email: string
-  createdAt: Date | string
+  createdAt: string // ISO timestamp или toDate().toISOString()
   nickname: string
 }
 
