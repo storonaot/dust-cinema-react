@@ -3,7 +3,9 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
+const appName = process.env.VITE_APP_NAME || 'DUST CINEMA'
+const port = parseInt(process.env.VITE_PORT || '3001')
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -12,6 +14,10 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3001,
+    port,
+  },
+  clearScreen: false, // Чтобы логи не скрывались
+  define: {
+    __APP_NAME__: JSON.stringify(appName),
   },
 })
