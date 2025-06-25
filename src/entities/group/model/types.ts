@@ -5,4 +5,4 @@ export type Group = {
   createdAt: string // ISO
 }
 
-export type NewGroup = Omit<Group, 'id' | 'createdAt' | 'members'>
+export type NewGroup = Omit<Group, 'id' | 'createdAt'>

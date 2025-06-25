@@ -9,4 +9,3 @@ import type { Group } from '@/entities/group/model'
 
 export const GROUP_CACHE_KEY = 'group'
 export const GROUPS_CACHE_KEY = 'groups'
-export const GROUPS_COLLECTION_NAME = 'groups'

@@ -12,7 +12,8 @@ import {
 import { db } from '@/shared/libs/firebase'
 import { withApiErrorHandling } from '@/shared/libs/error-handling'
 import type { Nullable } from '@/shared/libs/utils'
-import { USERS_COLLECTION_NAME, type NewUser, type User } from '@/entities/user/model'
+import { USER_FIELDS, type NewUser, type User } from '@/entities/user/model'
+import { USERS_COLLECTION_NAME } from '@/shared/constants'
 
 export const getUserProfileByUidAPI = async (uid: string): Promise<Nullable<User>> => {
   const ref = doc(db, USERS_COLLECTION_NAME, uid)
@@ -34,7 +35,10 @@ export const getUserProfileByUidAPI = async (uid: string): Promise<Nullable<User
 }
 
 const checkNicknameExists = async (nickname: string): Promise<boolean> => {
-  const q = query(collection(db, USERS_COLLECTION_NAME), where('nickname', '==', nickname))
+  const q = query(
+    collection(db, USERS_COLLECTION_NAME),
+    where(USER_FIELDS.nickname, '==', nickname)
+  )
 
   return withApiErrorHandling(async () => {
     const snapshot = await getDocs(q)

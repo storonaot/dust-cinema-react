@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useGroups } from '@/entities/group/hooks'
 import { Button } from '@/shared/ui/button'
 import { GroupView } from '@/entities/group/ui'
+import { useGroups } from '@/features/group/hooks'
 
 const GroupSwitcher = () => {
   const { data: groups = [], isLoading } = useGroups()

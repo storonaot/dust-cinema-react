@@ -3,9 +3,10 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useQuery } from '@tanstack/react-query'
 
 import { getUserProfileByUidAPI } from '@/entities/user/api'
-import { USERS_COLLECTION_NAME, type User } from '@/entities/user/model'
+import { type User } from '@/entities/user/model'
 import type { Nullable } from '@/shared/libs/utils'
 import { auth } from '@/shared/libs/firebase'
+import { USERS_COLLECTION_NAME } from '@/shared/constants'
 
 export const useAuthUid = () => {
   const [uid, setUid] = useState<string | null>(null)

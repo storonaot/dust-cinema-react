@@ -12,7 +12,7 @@ interface GroupFormProps {
 
 const GroupForm: FC<GroupFormProps> = ({ groupId, onSuccess }) => {
   const { data: user } = useUserProfile()
-  const { createGroup, updateGroup } = useGroupActions()
+  const { updateGroup, createGroup } = useGroupActions()
   const { data: group, isLoading: isLoadingGroup } = useGroup(groupId)
 
   const [groupName, setGroupName] = useState('')

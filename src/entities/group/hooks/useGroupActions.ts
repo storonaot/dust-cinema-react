@@ -27,7 +27,7 @@ export const useGroupActions = () => {
   })
 
   return {
-    createGroup,
     updateGroup,
+    createGroup,
   }
 }
