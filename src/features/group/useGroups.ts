@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/libs/firebase'
-// import { useUserProfile } from '@/entities/user/hooks/useUserProfile'
 import { GROUPS_COLLECTION_NAME, type Group } from '@/entities/group/model'
-import { useUserProfile } from './useUserProfile'
+import { useUserProfile } from '../user-profile/model/useUserProfile'
 
-export const useUserGroups = () => {
+export const useGroups = () => {
   const { data: user } = useUserProfile()
 
   return useQuery<Group[]>({

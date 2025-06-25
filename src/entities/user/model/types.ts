@@ -1,4 +1,4 @@
-export type UserProfile = {
+export type User = {
   uid: string
   name: string
   email: string
@@ -6,4 +6,4 @@ export type UserProfile = {
   nickname: string
 }
 
-export type NewUserProfile = Omit<UserProfile, 'createdAt'>
+export type NewUser = Omit<User, 'createdAt'>

@@ -12,9 +12,9 @@ import {
 import { db } from '@/shared/libs/firebase'
 import { withApiErrorHandling } from '@/shared/libs/error-handling'
 import type { Nullable } from '@/shared/libs/utils'
-import { USERS_COLLECTION_NAME, type NewUserProfile, type UserProfile } from '@/entities/user/model'
+import { USERS_COLLECTION_NAME, type NewUser, type User } from '@/entities/user/model'
 
-export const getUserProfileByUidAPI = async (uid: string): Promise<Nullable<UserProfile>> => {
+export const getUserProfileByUidAPI = async (uid: string): Promise<Nullable<User>> => {
   const ref = doc(db, USERS_COLLECTION_NAME, uid)
 
   return withApiErrorHandling(async () => {
@@ -39,7 +39,7 @@ const checkNicknameExists = async (nickname: string): Promise<boolean> => {
   return !snapshot.empty
 }
 
-export const createUserProfileAPI = async (profile: NewUserProfile): Promise<void> => {
+export const createUserProfileAPI = async (profile: NewUser): Promise<void> => {
   return withApiErrorHandling(async () => {
     const { uid, name, email, nickname } = profile
 

@@ -1,10 +1,13 @@
-export const USERS_COLLECTION_NAME = 'users'
+import type { User } from '@/entities/user/model'
 
 export const USER_FIELDS = {
   uid: 'uid',
   name: 'name',
   email: 'email',
   createdAt: 'createdAt',
-} as const
+  nickname: 'nickname',
+} as const satisfies Record<keyof User, string>
+
+export const USERS_COLLECTION_NAME = 'users'
 
 export const USER_PROFILE_CACHE_KEY = 'user-profile'
