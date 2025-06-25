@@ -1,5 +1,6 @@
-import { createUserProfileAPI, USER_PROFILE_CACHE_KEY } from '@/entities/user/model'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { USER_PROFILE_CACHE_KEY } from '@/entities/user/model'
+import { createUserProfileAPI } from '@/entities/user/api'
 
 export const useUserProfileActions = () => {
   const queryClient = useQueryClient()

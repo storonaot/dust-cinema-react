@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/libs/firebase'
 import { GROUPS_COLLECTION_NAME, type Group } from '@/entities/group/model'
-import { useUserProfile } from '../user-profile/model/useUserProfile'
+import { useUserProfile } from '@/entities/user/hooks'
 
 export const useGroups = () => {
   const { data: user } = useUserProfile()
@@ -23,31 +23,6 @@ export const useGroups = () => {
         id: doc.id,
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate().toISOString(),
-      })) as Group[]
-    },
-    enabled: !!user?.nickname,
-  })
-}
-
-export const useInvitedGroups = () => {
-  const { data: user } = useUserProfile()
-
-  return useQuery<Group[]>({
-    queryKey: ['invited-groups', user?.nickname],
-    queryFn: async () => {
-      if (!user?.nickname) return []
-
-      const q = query(
-        collection(db, GROUPS_COLLECTION_NAME),
-        where('invitedNicknames', 'array-contains', user.nickname)
-      )
-
-      const snap = await getDocs(q)
-
-      return snap.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        createdAt: doc.data().createdAt?.toISOString(),
       })) as Group[]
     },
     enabled: !!user?.nickname,

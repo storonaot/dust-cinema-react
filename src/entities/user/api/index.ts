@@ -35,8 +35,11 @@ export const getUserProfileByUidAPI = async (uid: string): Promise<Nullable<User
 
 const checkNicknameExists = async (nickname: string): Promise<boolean> => {
   const q = query(collection(db, USERS_COLLECTION_NAME), where('nickname', '==', nickname))
-  const snapshot = await getDocs(q)
-  return !snapshot.empty
+
+  return withApiErrorHandling(async () => {
+    const snapshot = await getDocs(q)
+    return !snapshot.empty
+  }, 'checkNicknameExists')
 }
 
 export const createUserProfileAPI = async (profile: NewUser): Promise<void> => {

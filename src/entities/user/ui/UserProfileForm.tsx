@@ -1,7 +1,7 @@
 import { useState, type FC } from 'react'
 import { auth } from '@/shared/libs/firebase'
 import { Button, Input } from '@/shared/ui'
-import { useUserProfileActions } from '@/features/user-profile/model'
+import { useUserProfileActions } from '@/entities/user/hooks'
 
 interface UserProfileFormProps {
   onSuccess?: () => void
