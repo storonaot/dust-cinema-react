@@ -1,26 +1,33 @@
 import type { FC } from 'react'
-import { useUserProfile } from '@/entities/user/hooks'
 import { Badge, Card } from '@/shared/ui'
 import { useGroupInvites } from '@/entities/invite/hooks'
-// import { Badge } from '@/shared/ui/badge'
-// import { Card } from '@/shared/ui/card'
+import { InviteMemberModal } from '@/features/membership/ui'
 
 interface InvitePanelProps {
   groupId: string
+  allowMemberInvite?: boolean
 }
 
-const InvitePanel: FC<InvitePanelProps> = ({ groupId }) => {
-  const { data: user } = useUserProfile()
+const InvitePanel: FC<InvitePanelProps> = ({ groupId, allowMemberInvite = false }) => {
   const { data: invites, isLoading } = useGroupInvites(groupId)
+
+  const renderInviteModal = () => {
+    return allowMemberInvite && <InviteMemberModal groupId={groupId} />
+  }
 
   if (isLoading) return <p className="text-sm text-muted-foreground">Loading invites…</p>
   if (!invites || invites.length === 0)
-    return <p className="text-sm text-muted-foreground">No invites</p>
+    return (
+      <div>
+        {renderInviteModal()}
+        <p className="text-sm text-muted-foreground">No invites</p>
+      </div>
+    )
 
   return (
     <div className="space-y-2">
+      {renderInviteModal()}
       <h4 className="font-medium">Sent Invitations</h4>
-
       {invites.map(invite => (
         <Card key={invite.id} className="p-3 flex justify-between items-center">
           <div>

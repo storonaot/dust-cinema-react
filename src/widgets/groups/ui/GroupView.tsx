@@ -2,8 +2,8 @@ import type { FC } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useGroup } from '@/entities/group/hooks'
 import { useUserProfile } from '@/entities/user/hooks'
-import { InviteMemberModal } from '@/features/membership/ui'
 import { InvitePanel } from '@/widgets/invites/ui'
+import { useCurrentUser } from '@/shared/contexts/current-user'
 
 interface GroupViewProps {
   groupId: string
@@ -12,6 +12,7 @@ interface GroupViewProps {
 const GroupView: FC<GroupViewProps> = ({ groupId }) => {
   const { data: group, isLoading: groupLoading } = useGroup(groupId)
   const { data: user, isLoading: userLoading } = useUserProfile()
+  const { currentUser } = useCurrentUser()
 
   if (groupLoading || userLoading) return <Loader2 className="animate-spin" />
   if (!group || !user) return <div>Группа не найдена или пользователь не определён</div>
@@ -24,10 +25,7 @@ const GroupView: FC<GroupViewProps> = ({ groupId }) => {
         <h3 className="text-xl font-medium mb-1">Group Name: {group.name}</h3>
         <p className="text-sm text-muted-foreground">{isOwner ? 'U r Owner' : 'U r Member'}</p>
       </div>
-
-      <InvitePanel groupId={group.id} />
-
-      {isOwner && <InviteMemberModal groupId={group.id} />}
+      {currentUser?.isSuperUser && <InvitePanel groupId={group.id} allowMemberInvite />}
     </div>
   )
 }

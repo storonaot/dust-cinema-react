@@ -6,6 +6,7 @@ export const USER_FIELDS = {
   email: 'email',
   createdAt: 'createdAt',
   nickname: 'nickname',
+  isSuperUser: 'isSuperUser',
 } as const satisfies Record<keyof User, string>
 
 export const USER_PROFILE_CACHE_KEY = 'userProfile'

@@ -9,3 +9,4 @@ export const GROUP_FIELDS = {
 
 export const GROUP_CACHE_KEY = 'group'
 export const GROUPS_CACHE_KEY = 'groups'
+// export const USER_GROUPS_CACHE_KEY = 'userGroups'

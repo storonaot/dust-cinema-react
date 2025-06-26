@@ -2,7 +2,6 @@ import { useGroup } from '@/entities/group/hooks'
 import { Button } from '@/shared/ui'
 
 const InviteBanner = ({
-  inviteId,
   groupId,
   onAccept,
   onDecline,

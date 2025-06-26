@@ -25,11 +25,12 @@ export const getUserProfileByUidAPI = async (uid: string): Promise<Nullable<User
 
     const data = snap.data()
     return {
-      uid,
-      name: data.name,
-      email: data.email,
-      nickname: data.nickname,
-      createdAt: data.createdAt?.toDate().toISOString(),
+      [USER_FIELDS.uid]: uid,
+      [USER_FIELDS.name]: data.name,
+      [USER_FIELDS.email]: data.email,
+      [USER_FIELDS.nickname]: data.nickname,
+      [USER_FIELDS.createdAt]: data.createdAt?.toDate().toISOString(),
+      [USER_FIELDS.isSuperUser]: data.isSuperUser,
     }
   }, 'getUserProfileByUidAPI')
 }
@@ -57,11 +58,11 @@ export const createUserProfileAPI = async (profile: NewUser): Promise<void> => {
 
     const ref = doc(db, USERS_COLLECTION_NAME, uid)
     await setDoc(ref, {
-      uid,
-      name,
-      email,
-      nickname,
-      createdAt: serverTimestamp(),
+      [USER_FIELDS.uid]: uid,
+      [USER_FIELDS.name]: name,
+      [USER_FIELDS.email]: email,
+      [USER_FIELDS.nickname]: nickname,
+      [USER_FIELDS.createdAt]: serverTimestamp(),
     })
   }, 'createUserProfileAPI')
 }

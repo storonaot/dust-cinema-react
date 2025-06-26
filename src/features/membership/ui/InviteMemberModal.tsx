@@ -40,7 +40,7 @@ const InviteMemberModal = ({ groupId }: InviteMemberModalProps) => {
       <DialogTrigger asChild>
         <Button variant="outline">Invite a member</Button>
       </DialogTrigger>
-      <DialogContent className="space-y-4" aria-describedby="Send an invitation">
+      <DialogContent className="space-y-4" aria-describedby={undefined}>
         <DialogTitle>Send an invitation</DialogTitle>
 
         <Input

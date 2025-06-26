@@ -4,6 +4,7 @@ export type User = {
   email: string
   createdAt: string // ISO timestamp или toDate().toISOString()
   nickname: string
+  isSuperUser?: boolean
 }
 
 export type NewUser = Omit<User, 'createdAt'>

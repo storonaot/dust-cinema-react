@@ -46,20 +46,6 @@ export const getUserInvitesAPI = async (userId: string): Promise<Invite[]> => {
   }, 'getUserInvitesAPI')
 }
 
-// export const getGroupInvitesAPI = async (groupId: string): Promise<Invite[]> => {
-//   return withApiErrorHandling(async () => {
-//     const q = query(collection(db, INVITES_COLLECTION_NAME), where('groupId', '==', groupId))
-
-//     const snap = await getDocs(q)
-
-//     return snap.docs.map(doc => ({
-//       id: doc.id,
-//       ...doc.data(),
-//       createdAt: doc.data().createdAt?.toDate().toISOString(),
-//     })) as Invite[]
-//   }, 'getGroupInvitesAPI')
-// }
-
 export const getGroupInvitesAPI = async (groupId: string): Promise<Invite[]> => {
   return withApiErrorHandling(async () => {
     const q = query(

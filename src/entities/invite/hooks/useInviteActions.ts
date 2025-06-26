@@ -1,8 +1,16 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { acceptInviteAPI, createInviteAPI, updateInviteAPI } from '@/entities/invite/api'
-import { InviteStatus, type Invite, type NewInvite } from '@/entities/invite/model'
+import {
+  InviteStatus,
+  USER_INVITES_CACHE_KEY,
+  type Invite,
+  type NewInvite,
+} from '@/entities/invite/model'
+import { GROUPS_CACHE_KEY } from '@/entities/group/model'
 
 export const useInviteActions = () => {
+  const queryClient = useQueryClient()
+
   const createInvite = useMutation({
     mutationFn: (payload: NewInvite) => createInviteAPI(payload),
     onSuccess: () => {
@@ -16,7 +24,8 @@ export const useInviteActions = () => {
   const acceptInvite = useMutation({
     mutationFn: (invite: Invite) => acceptInviteAPI(invite),
     onSuccess: () => {
-      console.log('Invitation accepted and membership created')
+      queryClient.invalidateQueries({ queryKey: [GROUPS_CACHE_KEY] })
+      queryClient.invalidateQueries({ queryKey: [USER_INVITES_CACHE_KEY] })
     },
     onError: error => {
       console.error('Failed to accept invitation:', error)
