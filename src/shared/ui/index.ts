@@ -1,3 +1,5 @@
 export { Button } from './button'
 export { Input } from './input'
 export { DialogTrigger, Dialog, DialogContent, DialogTitle } from './dialog'
+export { Card } from './card'
+export { Badge } from './badge'

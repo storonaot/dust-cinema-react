@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { createInviteAPI } from '@/entities/invite/api'
-import type { NewInvite } from '@/entities/invite/model'
+import { acceptInviteAPI, createInviteAPI, updateInviteAPI } from '@/entities/invite/api'
+import { InviteStatus, type Invite, type NewInvite } from '@/entities/invite/model'
 
 export const useInviteActions = () => {
   const createInvite = useMutation({
@@ -14,9 +14,9 @@ export const useInviteActions = () => {
   })
 
   const acceptInvite = useMutation({
-    mutationFn: (inviteId: string) => updateInviteAPI(inviteId, 'accepted'),
+    mutationFn: (invite: Invite) => acceptInviteAPI(invite),
     onSuccess: () => {
-      console.log('Invitation accepted')
+      console.log('Invitation accepted and membership created')
     },
     onError: error => {
       console.error('Failed to accept invitation:', error)
@@ -24,7 +24,7 @@ export const useInviteActions = () => {
   })
 
   const declineInvite = useMutation({
-    mutationFn: (inviteId: string) => updateInviteAPI(inviteId, 'declined'),
+    mutationFn: (inviteId: string) => updateInviteAPI(inviteId, InviteStatus.DECLINED),
     onSuccess: () => {
       console.log('Invitation declined')
     },
@@ -33,5 +33,5 @@ export const useInviteActions = () => {
     },
   })
 
-  return { createInvite }
+  return { createInvite, acceptInvite, declineInvite }
 }

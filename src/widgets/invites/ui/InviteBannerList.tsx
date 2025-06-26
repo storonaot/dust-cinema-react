@@ -26,8 +26,8 @@ const InviteBannerList = () => {
           key={invite.id}
           inviteId={invite.id}
           groupId={invite.groupId}
-          onAccept={() => acceptInvite.mutate({ inviteId: invite.id })}
-          onDecline={() => declineInvite.mutate({ inviteId: invite.id })}
+          onAccept={() => acceptInvite.mutate(invite)}
+          onDecline={() => declineInvite.mutate(invite.id)}
         />
       ))}
     </div>

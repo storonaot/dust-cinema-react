@@ -28,7 +28,12 @@ export const getMembershipsByUidAPI = async (uid: string): Promise<Membership[]>
       where(MEMBERSHIP_FIELDS.uid, '==', uid)
     )
 
+    console.log('uid', uid)
+    console.log('q', q)
+
     const snap = await getDocs(q)
+
+    console.log('snap', snap)
 
     return snap.docs.map(doc => ({
       id: doc.id,

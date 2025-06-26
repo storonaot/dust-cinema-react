@@ -15,6 +15,8 @@ export const useGroups = () => {
       // 1. Получаем membership'ы текущего пользователя
       const memberships = await getMembershipsByUidAPI(user.uid)
 
+      console.log('memberships', memberships)
+
       const groupIds = memberships.map(m => m.groupId)
 
       if (groupIds.length === 0) return []

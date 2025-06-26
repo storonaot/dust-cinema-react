@@ -1,1 +1,1 @@
-export { InviteBanner } from './InviteBanner'
+export { default as InviteBanner } from './InviteBanner'

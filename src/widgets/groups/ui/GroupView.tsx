@@ -3,6 +3,7 @@ import { Loader2 } from 'lucide-react'
 import { useGroup } from '@/entities/group/hooks'
 import { useUserProfile } from '@/entities/user/hooks'
 import { InviteMemberModal } from '@/features/membership/ui'
+import { InvitePanel } from '@/widgets/invites/ui'
 
 interface GroupViewProps {
   groupId: string
@@ -23,6 +24,8 @@ const GroupView: FC<GroupViewProps> = ({ groupId }) => {
         <h3 className="text-xl font-medium mb-1">Group Name: {group.name}</h3>
         <p className="text-sm text-muted-foreground">{isOwner ? 'U r Owner' : 'U r Member'}</p>
       </div>
+
+      <InvitePanel groupId={group.id} />
 
       {isOwner && <InviteMemberModal groupId={group.id} />}
     </div>
