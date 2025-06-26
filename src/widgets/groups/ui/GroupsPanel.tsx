@@ -1,7 +1,7 @@
 import { Loader2 } from 'lucide-react'
-import { CreateGroupModal, GroupSwitcher } from '@/features/group/ui'
-import { GroupView } from '@/entities/group/ui'
+import { CreateGroupModal } from '@/features/group/ui'
 import { useGroups } from '@/features/group/hooks'
+import { GroupSwitcher, GroupView } from '@/widgets/groups/ui'
 
 const GroupsPanel = () => {
   const { data: groups, isLoading } = useGroups()

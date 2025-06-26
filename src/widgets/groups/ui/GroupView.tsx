@@ -2,7 +2,6 @@ import type { FC } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useGroup } from '@/entities/group/hooks'
 import { useUserProfile } from '@/entities/user/hooks'
-import { Button } from '@/shared/ui/button'
 import { InviteMemberModal } from '@/features/membership/ui'
 
 interface GroupViewProps {
