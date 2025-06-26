@@ -8,4 +8,5 @@ export const USER_FIELDS = {
   nickname: 'nickname',
 } as const satisfies Record<keyof User, string>
 
-export const USER_PROFILE_CACHE_KEY = 'user-profile'
+export const USER_PROFILE_CACHE_KEY = 'userProfile'
+export const USER_SEARCH_CACHE_KEY = 'searchUser'

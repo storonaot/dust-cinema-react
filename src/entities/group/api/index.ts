@@ -12,6 +12,7 @@ import { db } from '@/shared/libs/firebase'
 import { withApiErrorHandling } from '@/shared/libs/error-handling'
 import { type Group, type NewGroup } from '@/entities/group/model'
 import { GROUPS_COLLECTION_NAME, MEMBERSHIPS_COLLECTION_NAME } from '@/shared/constants'
+import { MembershipRole } from '@/entities/membership/model'
 
 export const createGroupAPI = async ({ name, owner }: NewGroup): Promise<string> => {
   return await runTransaction(db, async transaction => {
@@ -27,7 +28,7 @@ export const createGroupAPI = async ({ name, owner }: NewGroup): Promise<string>
     transaction.set(membershipRef, {
       groupId: groupRef.id,
       uid: owner,
-      role: 'owner',
+      role: MembershipRole.OWNER,
       createdAt: new Date(),
     })
 

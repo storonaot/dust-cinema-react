@@ -3,6 +3,7 @@ import { Loader2 } from 'lucide-react'
 import { useGroup } from '@/entities/group/hooks'
 import { useUserProfile } from '@/entities/user/hooks'
 import { Button } from '@/shared/ui/button'
+import { InviteMemberModal } from '@/features/membership/ui'
 
 interface GroupViewProps {
   groupId: string
@@ -17,11 +18,6 @@ const GroupView: FC<GroupViewProps> = ({ groupId }) => {
 
   const isOwner = group.owner === user.uid
 
-  const handleInviteClick = () => {
-    // здесь может быть открытие модалки или переход к инвайтам
-    console.log('Открыть модалку приглашения')
-  }
-
   return (
     <div className="mt-4 p-4 border rounded space-y-4">
       <div>
@@ -29,11 +25,7 @@ const GroupView: FC<GroupViewProps> = ({ groupId }) => {
         <p className="text-sm text-muted-foreground">{isOwner ? 'U r Owner' : 'U r Member'}</p>
       </div>
 
-      {isOwner && (
-        <div>
-          <Button onClick={handleInviteClick}>Send an invitation</Button>
-        </div>
-      )}
+      {isOwner && <InviteMemberModal groupId={group.id} />}
     </div>
   )
 }

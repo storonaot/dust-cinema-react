@@ -65,3 +65,20 @@ export const createUserProfileAPI = async (profile: NewUser): Promise<void> => {
     })
   }, 'createUserProfileAPI')
 }
+
+export const searchUserByNicknameAPI = async (nickname: string): Promise<User[]> => {
+  const q = query(
+    collection(db, USERS_COLLECTION_NAME),
+    where(USER_FIELDS.nickname, '>=', nickname),
+    where(USER_FIELDS.nickname, '<=', nickname + '\uf8ff') // для префиксного поиска
+  )
+
+  return withApiErrorHandling(async () => {
+    const snap = await getDocs(q)
+
+    return snap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as unknown as User[]
+  }, 'searchUserByNicknameAPI')
+}

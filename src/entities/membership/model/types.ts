@@ -1,8 +1,13 @@
+export enum MembershipRole {
+  OWNER = 'owner',
+  MEMBER = 'member',
+}
+
 export type Membership = {
   id: string // Firestore document ID
   groupId: string
   uid: string
-  role: 'owner' | 'member'
+  role: MembershipRole
   createdAt: string // ISO
 }
 
