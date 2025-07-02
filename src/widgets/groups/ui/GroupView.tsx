@@ -22,7 +22,9 @@ const GroupView: FC<GroupViewProps> = ({ groupId }) => {
   return (
     <div className="mt-4 p-4 border rounded space-y-4">
       <div>
-        <h3 className="text-xl font-medium mb-1">Group Name: {group.name}</h3>
+        <h3 className="text-xl font-medium mb-1">
+          Welcome to <b>{group.name}</b>{' '}
+        </h3>
         <p className="text-sm text-muted-foreground">{isOwner ? 'U r Owner' : 'U r Member'}</p>
       </div>
       {currentUser?.isSuperUser && <InvitePanel groupId={group.id} allowMemberInvite />}
